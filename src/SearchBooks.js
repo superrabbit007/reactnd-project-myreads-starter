@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import escapeRegExp from 'escape-string-regexp'
 import Select from './Select.js'
+import Book from './Book'
+
 
 class SearchBooks extends Component {
 	state= {
@@ -70,18 +72,12 @@ class SearchBooks extends Component {
               <ol className="books-grid">
               {this.state.searchBooks.length>0 &&(
                 this.state.searchBooks.map((book) => (
-                  <li key={book.id}>
-                    <div className="book">
-                        <div className="book-top">
-                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks? book.imageLinks.thumbnail : 'cat6.jpg' })` }}></div>
-                          <Select
-                       
-                        />
-                        </div>
-                        <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors}</div>
-                      </div>
-                  </li>
+                  <Book
+                  key={book.id}
+                  title={book.title}
+                  author={book.authors}
+                  image={book.imageLinks}
+                  />
               )))}
               </ol>
             </div>
