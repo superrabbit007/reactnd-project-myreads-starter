@@ -32,9 +32,7 @@ class SearchBooks extends Component {
         }
           console.log(this.state.searchBooks);
 
-      }).catch((error)=>(
-          console.log(Error(error))
-        ))
+      })
     }else {
       this.setState({searchBooks: []});
 
@@ -72,12 +70,13 @@ class SearchBooks extends Component {
               <ol className="books-grid">
               {this.state.searchBooks.length>0 &&(
                 this.state.searchBooks.map((book) => (
-                  <Book
-                  key={book.id}
-                  title={book.title}
-                  author={book.authors}
-                  image={book.imageLinks}
-                  />
+                    <Book
+                      key={book.id}
+                      title={book.title}
+                      author={book.authors}
+                      image={book.imageLinks}
+                    />
+                  
               )))}
               </ol>
             </div>

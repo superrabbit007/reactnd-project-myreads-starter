@@ -20,3 +20,14 @@
                         <div className="book-authors">{book.authors}</div>
                       </div>
                   </li>
+
+
+
+
+
+ <div className="book-shelf-changer">
+                    	<Select
+	                    	key={this.props.key}
+	                    	onChange={(event)=>this.handleShelf(event.target.value)}
+                    	/>
+                	<div/>

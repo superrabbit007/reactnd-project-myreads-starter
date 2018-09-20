@@ -1,12 +1,31 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Select from './Select.js'
-
+import * as BooksAPI from './BooksAPI'
 
 
 class ListBooks extends Component {
 	state= {
-		bookshelf: 'current'
+		bookshelf: {}
+	}
+
+
+	handle() {
+
+	    this.props.books.map((book)=>(
+	      BooksAPI.update(book, book.shelf).then((shelfs)=>(
+	      	console.log(shelfs),
+	        this.setState({bookshelf: shelfs})
+
+	      ))
+	    ))
+	}
+
+	moveBook(e) {
+		let a =e.target.value;
+		console.log(a);
+		console.log(this.props.shelfs);
+		// this.handle();
 	}
 
 	render() {
@@ -25,9 +44,15 @@ class ListBooks extends Component {
 	                        <div className="book">
 	                          <div className="book-top">
 	                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div>
-	                            <Select
-	                            	onBook={this.state.bookshelf}
-	                        	/>
+	                           	<div className="book-shelf-changer">
+	                           		<select onChange={(e)=>this.moveBook(e)}>
+						                <option value="move" disabled>Move to...</option>
+						                <option value="currentlyReading">Currently Reading</option>
+						                <option value="wantToRead">Want to Read</option>
+						                <option value="read">Read</option>
+						                <option value="none">None</option>
+            						</select>
+                   				</div>
 	                          </div>
 	                          <div className="book-title">To Kill a Mockingbird</div>
 	                          <div className="book-authors">Harper Lee</div>

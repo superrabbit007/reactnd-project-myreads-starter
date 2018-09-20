@@ -7,7 +7,24 @@ import {Route} from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
-    book: []
+    book: [],
+    shelf: {}
+  }
+
+  componentDidMount() {
+
+    BooksAPI.getAll().then((books)=>(
+      console.log(books),
+      this.setState({book: books})
+    ));
+
+    this.state.book.map((book)=>(
+        BooksAPI.update(book, book.shelf).then((shelfs)=>(
+          console.log(shelfs),
+          this.setState({shelf: shelfs})
+        ))
+    ))
+
   }
 
 
@@ -18,7 +35,8 @@ class BooksApp extends React.Component {
   
           <Route exact path = '/' render={() =>(
             <ListBooks
-              onQuery={BooksAPI.search()}
+              books = {this.state.book}
+              shelfs={this.state.shelf}
             />
           )}/>
       </div>
