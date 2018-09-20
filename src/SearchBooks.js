@@ -17,27 +17,40 @@ class SearchBooks extends Component {
       query: query
     });
     console.log(this.state.query);
-      console.log('test ');
-        BooksAPI.search(query).then((search)=>{
-          console.log(search);
-          if (!Array.isArray(search)) {
-            this.setState({searchBooks:[]});
-          }
-          this.setState({searchBooks: search});
+    if(query.trim()!== '') {
+      console.log(query);
+      BooksAPI.search(query).then((search)=>{
+        console.log(search);
+        if (!Array.isArray(search)) {
+          this.setState({searchBooks:[]});
+        }else {
 
-        console.log(this.state.searchBooks);
-        })
-   
+          this.setState({searchBooks: search});
+          console.log(this.state.searchBooks);
+        }
+          console.log(this.state.searchBooks);
+
+      }).catch((error)=>(
+          console.log(Error(error))
+        ))
+    }else {
+      this.setState({searchBooks: []});
+
     }
+        
+   
+  }
 
 
 	render() {
     let showBook;
-    if(Array.isArray(this.state.searchBooks) && this.state.searchBooks.length>0) {
+    let searchBooks= this.state.searchBooks;
+    console.log(searchBooks);
+    if(searchBooks.length>0) {
       showBook = this.state.searchBooks;
       console.log(showBook);
     }else {
-      showBook ='';
+      showBook = [];
     }
     
 		return (
@@ -60,8 +73,7 @@ class SearchBooks extends Component {
                   <li key={book.id}>
                     <div className="book">
                         <div className="book-top">
-                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `${book.imageLinks.smallThumbnail
-}` }}></div>
+                          <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks? book.imageLinks.thumbnail : 'cat6.jpg' })` }}></div>
                           <Select
                        
                         />
