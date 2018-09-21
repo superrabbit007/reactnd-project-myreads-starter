@@ -26,13 +26,15 @@ class BooksApp extends React.Component {
 
   }
 
-  moveBook(book, bookshelf) {
+  moveBook(book, shelf) {
     console.log(book);
-    console.log(bookshelf);
-    BooksAPI.update(book, bookshelf).then((shelf)=>(
+    console.log(shelf);
+
+    BooksAPI.update(book, shelf).then((shelf)=>(
       console.log(shelf),
       this.setState({shelf: shelf})
     ));
+    /*当某本书切换书架之后，重新加载页面的书籍 */
     BooksAPI.getAll().then((books)=>(
       this.setState({book: books})
     ))

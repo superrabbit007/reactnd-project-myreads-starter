@@ -63,3 +63,8 @@
      title={book.title}
                       author={book.authors}
                       image={book.imageLinks}
+
+                      selected={'currentlyReading'===shelf?'selected':''}
+                      selected={'wantToRead'===shelf?'selected':''}
+                      selected={'read'===shelf?'selected':''}
+                      selected={'none'===shelf?'selected':''}
