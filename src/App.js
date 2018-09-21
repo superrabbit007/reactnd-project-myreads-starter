@@ -26,6 +26,10 @@ class BooksApp extends React.Component {
 
   }
 
+  moveBook() {
+    // BooksAPI.update(book, book.shelf).then()
+  }
+
 
   render() {
     return (
@@ -36,12 +40,13 @@ class BooksApp extends React.Component {
             <ListBooks
               books = {this.state.book}
               shelfs={this.state.shelf}
+              move={this.moveBook}
             />
           )}/>
       </div>
     )
   }
-  
+
 }
 
 

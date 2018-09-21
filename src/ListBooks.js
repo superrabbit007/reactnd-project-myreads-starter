@@ -7,7 +7,8 @@ import Book from './Book'
 
 class ListBooks extends Component {
 	state= {
-		bookshelf: {}
+		bookshelf: '',
+		bookId: ''
 	}
 
 	moveBook(e) {
@@ -20,12 +21,23 @@ class ListBooks extends Component {
     	console.log(a1);
 	}
 
-	show(e) {
-		console.log(e);
+	show(shelf, id) {
+		console.log(shelf,id)
+		this.setState({
+			bookshelf: shelf ,
+			bookId: id
+		})
+
+	}
+
+	bul() {
+		console.log('book change');
 	}
 
 
 	render() {
+		const books = this.props.books;
+
 		return (
 			<div className="list-books">
 	            <div className="list-books-title">
@@ -40,11 +52,13 @@ class ListBooks extends Component {
 	                      {this.props.books.filter((book)=>(book.shelf==='currentlyReading')).map((book)=>(
 	                      	<Book
 	                      		key={book.id}
+	                      		id={book.id}
 	                      		title={book.title}
 	                      		author={book.author}
 	                      		image={book.imageLinks}
 	                      		shelf={book.shelf}
-	                      		onSelect={(e)=>this.show(e)}/>
+	                      		onSelectChange={(shelf,id)=>this.show(shelf,id)}
+	                      		onClick={this.bul}/>
 	                      ))}
 	                      <li>
 	                        <div className="book">

@@ -4,30 +4,41 @@ import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
 	state={
-		shelf: ''
+		shelfB: {} ,
+		bookId: ''
 	}
 
-	handleShelf(shelf) {
-		this.setState({
-			shelf: shelf
-		})
+
+	handleShelf(e) {
+		// this.setState({
+		// 	shelfB: e.target.value
+		// })
+		this.props.onSelectChange(e.target.value, this.props.id);
+		console.log(this.props.id);
+		// this.setState({
+		// 	bookId: bookId
+		// })
+
 	}
 
 	moveBook(e) {
 		let a =e.target.value;
 		console.log(a);
+		console.log(this.props.id);
 	}
 
 
 	render() {
+		const shelfB = this.props.shelf;
+		// let  bookId = this.props.id;
 
 		return(
-			<li>
+			<li key={this.props.id}>
 				<div className="book">
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.image? this.props.image.thumbnail : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif' })` }}></div>
                    	<div className="book-shelf-changer">
-                   		<select onChange={this.props.onSelect}>
+                   		<select onChange={(e)=>this.handleShelf(e)}>
 			                <option value="move" disabled>Move to...</option>
 			                <option value="currentlyReading">Currently Reading</option>
 			                <option value="wantToRead">Want to Read</option>
@@ -35,7 +46,7 @@ class Book extends Component {
 			                <option value="none">None</option>
             			</select>
                    	</div>
-                  </div>
+                  </div>                 
                   <div className="book-title">{this.props.title}</div>
                   <div className="book-authors">{this.props.author}</div>
                 </div>
