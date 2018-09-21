@@ -10,11 +10,12 @@ class Book extends Component {
 			this.setState({
 				value: this.props.book.shelf
 			})
-		}else {
-			this.setState({
-				value: 'none'
-			})
-		}	
+		}
+		// }else {
+		// 	this.setState({
+		// 		value: 'none'
+		// 	})
+		// }	
 	}
 
 

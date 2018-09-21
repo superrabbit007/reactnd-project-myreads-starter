@@ -8,7 +8,9 @@ class SearchBooks extends Component {
 	state= {
     query: '',
     searchBooks: [],
+    shelf: ''
 	}
+
 
   updateQuery(query) {
     this.setState({
@@ -19,7 +21,22 @@ class SearchBooks extends Component {
         if (!Array.isArray(search)) {
           this.setState({searchBooks:[]});
         }else {
-          this.setState({searchBooks: search});
+          this.setState((prestate, props) =>{
+            const searchBooks = search;
+            const showBooks = this.props.books;
+            const showBookESearch = searchBooks.map((searchBook)=>{
+              const searchInShelf= showBooks.find(showBook =>
+                showBook.id === searchBook.id);
+              return {
+                ...searchBook,
+                shelf: searchInShelf? searchInShelf.shelf: 'none' 
+              }
+            });
+            return {
+              searchBooks: showBookESearch
+            }
+
+          });
         }
       })
     }else {
@@ -50,6 +67,7 @@ class SearchBooks extends Component {
             <div className="search-books-results">
               <ol className="books-grid">
               {this.state.searchBooks.length>0 &&(
+              
                 this.state.searchBooks.map((book) => (
                   <Book
                     key={book.id}
