@@ -35,24 +35,16 @@ class SearchBooks extends Component {
       })
     }else {
       this.setState({searchBooks: []});
+    }         
+  }
 
-    }
-        
-   
+  choseShelf(book,shelf) {
+    this.props.move(book, shelf);
   }
 
 
 	render() {
-    let showBook;
-    let searchBooks= this.state.searchBooks;
-    console.log(searchBooks);
-    if(searchBooks.length>0) {
-      showBook = this.state.searchBooks;
-      console.log(showBook);
-    }else {
-      showBook = [];
-    }
-    
+
 		return (
           <div className="search-books">
             <div className="search-books-bar">
@@ -70,14 +62,13 @@ class SearchBooks extends Component {
               <ol className="books-grid">
               {this.state.searchBooks.length>0 &&(
                 this.state.searchBooks.map((book) => (
-                    <Book
-                      key={book.id}
-                      title={book.title}
-                      author={book.authors}
-                      image={book.imageLinks}
-                    />
-                  
+                  <Book
+                    key={book.id}
+                    book={book}
+                    onSelectChange={(book,shelf)=>this.choseShelf(book,shelf)}
+                  />    
               )))}
+
               </ol>
             </div>
           </div>
