@@ -12,18 +12,17 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-
+    /*  加载默认的图书，并获取它们的书架状态 */
     BooksAPI.getAll().then((books)=>(
       console.log(books),
-      this.setState({book: books})
-    ));
-
-    this.state.book.map((book)=>(
+      this.setState({book: books}),
+      books.map((book)=>(
         BooksAPI.update(book, book.shelf).then((shelfs)=>(
-          console.log(shelfs),
+          // console.log(shelfs),
           this.setState({shelf: shelfs})
         ))
-    ))
+      ))  
+    ));
 
   }
 
@@ -42,6 +41,7 @@ class BooksApp extends React.Component {
       </div>
     )
   }
+  
 }
 
 

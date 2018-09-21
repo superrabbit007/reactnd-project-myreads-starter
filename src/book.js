@@ -7,10 +7,6 @@ class Book extends Component {
 		shelf: ''
 	}
 
-	// componentDidMount() {
-	// 	BooksAPI.update()
-	// }
-
 	handleShelf(shelf) {
 		this.setState({
 			shelf: shelf
@@ -31,7 +27,7 @@ class Book extends Component {
                   <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.image? this.props.image.thumbnail : 'https://books.google.com/googlebooks/images/no_cover_thumb.gif' })` }}></div>
                    	<div className="book-shelf-changer">
-                   		<select onChange={this.moveBook}>
+                   		<select onChange={this.props.onSelect}>
 			                <option value="move" disabled>Move to...</option>
 			                <option value="currentlyReading">Currently Reading</option>
 			                <option value="wantToRead">Want to Read</option>
