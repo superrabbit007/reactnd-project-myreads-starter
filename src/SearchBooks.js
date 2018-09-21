@@ -9,7 +9,7 @@ import Book from './Book'
 class SearchBooks extends Component {
 	state= {
     query: '',
-    searchBooks: []
+    searchBooks: [],
 	}
 
   updateQuery(query) {

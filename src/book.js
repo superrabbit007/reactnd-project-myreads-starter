@@ -9,9 +9,16 @@ class Book extends Component {
 	}
 
 	componentDidMount() {
-		this.setState({
-			value: this.props.book.shelf
-		})
+		if(this.props.book.shelf) {
+			this.setState({
+				value: this.props.book.shelf
+			})
+		}else {
+			this.setState({
+				value: 'none'
+			})
+		}
+		
 	}
 
 
@@ -25,12 +32,6 @@ class Book extends Component {
 		// 	bookId: bookId
 		// })
 
-	}
-
-	moveBook(e) {
-		let a =e.target.value;
-		console.log(a);
-		console.log(this.props.id);
 	}
 
 
