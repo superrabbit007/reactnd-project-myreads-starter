@@ -26,8 +26,13 @@ class BooksApp extends React.Component {
 
   }
 
-  moveBook() {
-    // BooksAPI.update(book, book.shelf).then()
+  moveBook(book, bookshelf) {
+    console.log(book);
+    console.log(bookshelf);
+    BooksAPI.update(book, bookshelf).then((shelf)=>(
+      console.log(shelf),
+      this.setState({shelf: shelf})
+    ))
   }
 
 
@@ -40,7 +45,7 @@ class BooksApp extends React.Component {
             <ListBooks
               books = {this.state.book}
               shelfs={this.state.shelf}
-              move={this.moveBook}
+              move={(book, shelf)=>this.moveBook(book, shelf)}
             />
           )}/>
       </div>

@@ -8,7 +8,7 @@ import Book from './Book'
 class ListBooks extends Component {
 	state= {
 		bookshelf: '',
-		bookId: ''
+		book: {}
 	}
 
 	moveBook(e) {
@@ -21,19 +21,15 @@ class ListBooks extends Component {
     	console.log(a1);
 	}
 
-	show(shelf, id) {
-		console.log(shelf,id)
+	show(book, shelf) {
+		console.log(book, shelf);
 		this.setState({
 			bookshelf: shelf ,
-			bookId: id
-		})
+			book: book 
+		});
+		this.props.move(book, shelf);
 
 	}
-
-	bul() {
-		console.log('book change');
-	}
-
 
 	render() {
 		const books = this.props.books;
@@ -53,12 +49,13 @@ class ListBooks extends Component {
 	                      	<Book
 	                      		key={book.id}
 	                      		id={book.id}
+	                      		book={book}
 	                      		title={book.title}
 	                      		author={book.author}
 	                      		image={book.imageLinks}
 	                      		shelf={book.shelf}
-	                      		onSelectChange={(shelf,id)=>this.show(shelf,id)}
-	                      		onClick={this.bul}/>
+	                      		onSelectChange={(book, shelf)=>this.show(book,shelf)}
+	                      	/>
 	                      ))}
 	                      <li>
 	                        <div className="book">

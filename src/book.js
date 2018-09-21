@@ -13,8 +13,8 @@ class Book extends Component {
 		// this.setState({
 		// 	shelfB: e.target.value
 		// })
-		this.props.onSelectChange(e.target.value, this.props.id);
-		console.log(this.props.id);
+		this.props.onSelectChange(this.props.book, e.target.value);
+		console.log(this.props.book);
 		// this.setState({
 		// 	bookId: bookId
 		// })
