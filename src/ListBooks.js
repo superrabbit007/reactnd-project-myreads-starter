@@ -1,28 +1,15 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import Select from './Select.js'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
 
-
 class ListBooks extends Component {
-	state= {
-		bookshelf: '',
-		book: {}
-	}
 
 	show(book, shelf) {
-		console.log(book, shelf);
-		this.setState({
-			bookshelf: shelf ,
-			book: book 
-		});
 		this.props.move(book, shelf);
-
 	}
 
 	render() {
-		const books = this.props.books;
 
 		return (
 			<div className="list-books">

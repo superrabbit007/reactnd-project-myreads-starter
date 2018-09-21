@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-import escapeRegExp from 'escape-string-regexp'
-import Select from './Select.js'
 import Book from './Book'
 
 
@@ -13,24 +11,16 @@ class SearchBooks extends Component {
 	}
 
   updateQuery(query) {
-    console.log(query);
     this.setState({
       query: query
     });
-    console.log(this.state.query);
     if(query.trim()!== '') {
-      console.log(query);
       BooksAPI.search(query).then((search)=>{
-        console.log(search);
         if (!Array.isArray(search)) {
           this.setState({searchBooks:[]});
         }else {
-
           this.setState({searchBooks: search});
-          console.log(this.state.searchBooks);
         }
-          console.log(this.state.searchBooks);
-
       })
     }else {
       this.setState({searchBooks: []});
@@ -67,7 +57,6 @@ class SearchBooks extends Component {
                     onSelectChange={(book,shelf)=>this.choseShelf(book,shelf)}
                   />    
               )))}
-
               </ol>
             </div>
           </div>

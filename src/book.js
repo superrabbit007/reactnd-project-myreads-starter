@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
-import Select from './Select.js'
-import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
 	state={
-		shelfB: '' ,
 		value: ''
 	}
 
@@ -17,8 +14,7 @@ class Book extends Component {
 			this.setState({
 				value: 'none'
 			})
-		}
-		
+		}	
 	}
 
 
@@ -27,11 +23,6 @@ class Book extends Component {
 			value: e.target.value
 		})
 		this.props.onSelectChange(this.props.book, e.target.value);
-		console.log(this.props.book);
-		// this.setState({
-		// 	bookId: bookId
-		// })
-
 	}
 
 
