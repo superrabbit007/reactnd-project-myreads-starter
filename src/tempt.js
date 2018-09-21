@@ -68,3 +68,5 @@
                       selected={'wantToRead'===shelf?'selected':''}
                       selected={'read'===shelf?'selected':''}
                       selected={'none'===shelf?'selected':''}
+
+                      	                  <span>Total: {this.props.books.filter((book)=>(book.shelf==='currentlyReading')).length}</sapn>
