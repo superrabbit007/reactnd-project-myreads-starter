@@ -12,7 +12,7 @@
 ### 后端服务器：
 * 使用node server.js 启动后端服务器（之后再浏览器中打开：localhost：5001）
 
-###前端服务器：
+### 前端服务器：
 * 运行`git clone`拷贝项目到电脑上
 * 在项目目录下，运行`npm install`，安装项目依赖项
 * 运行`npm install --save react-router-dom`，安装React Router
