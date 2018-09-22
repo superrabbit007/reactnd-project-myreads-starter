@@ -11,7 +11,6 @@ class SearchBooks extends Component {
     shelf: ''
 	}
 
-
   updateQuery(query) {
     this.setState({
       query: query

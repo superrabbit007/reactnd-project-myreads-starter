@@ -6,16 +6,9 @@ class Book extends Component {
 	}
 
 	componentDidMount() {
-		if(this.props.book.shelf) {
-			this.setState({
-				value: this.props.book.shelf
-			})
-		}
-		// }else {
-		// 	this.setState({
-		// 		value: 'none'
-		// 	})
-		// }	
+		this.setState({
+			value: this.props.book.shelf
+		})	
 	}
 
 
